@@ -1,0 +1,63 @@
+ kevin sypr-uebungen/aufgabe1]$ make aufgabe1
+gcc -g -fno-stack-protector -Wwrite-strings -Wall -Wextra -Werror -std=c11 -pedantic    aufgabe1.c   -o aufgabe1
+ kevin sypr-uebungen/aufgabe1]$ ./aufgabe1 
+0x7fffc0c1dc94 4 int zahl1 = 123
+0x7fffc0c1dc92 2 short int zahl2 = 123
+0x7fffc0c1dc88 8 long int zahl3 = 123
+0x7fffc0c1dc80 8 long long int zahl4 = 123
+0x7fffc0c1dc7c 4 unsigned int zahl1 = 123
+0x7fffc0c1dc7a 2 unsigned short int zahl2 = 123
+0x7fffc0c1dc70 8 unsgined long int zahl3 = 123
+0x7fffc0c1dc68 8 unsigned long long int zahl4 = 123
+0x7fffc0c1dc64 4 float zahl1 = 1.123000
+0x7fffc0c1dc58 8 double zahl2 = 1.123000
+0x7fffc0c1dc40 16 long double zahl3 = 1.123123
+0x7fffc0c1dc3f 1 char zeichen = y
+0x7fffc0c1dc3e 1 signed char zahl = -100
+0x7fffc0c1dc3d 1 unsigned char byte = 255
+0x55c98b9ab1d8 8 const char *str = "Hallo"
+LP64
+ kevin sypr-uebungen/aufgabe1]$ ./aufgabe1 | sort
+0x557a98e4d1d8 8 const char *str = "Hallo"
+0x7fff83443e6d 1 unsigned char byte = 255
+0x7fff83443e6e 1 signed char zahl = -100
+0x7fff83443e6f 1 char zeichen = y
+0x7fff83443e70 16 long double zahl3 = 1.123123
+0x7fff83443e88 8 double zahl2 = 1.123000
+0x7fff83443e94 4 float zahl1 = 1.123000
+0x7fff83443e98 8 unsigned long long int zahl4 = 123
+0x7fff83443ea0 8 unsgined long int zahl3 = 123
+0x7fff83443eaa 2 unsigned short int zahl2 = 123
+0x7fff83443eac 4 unsigned int zahl1 = 123
+0x7fff83443eb0 8 long long int zahl4 = 123
+0x7fff83443eb8 8 long int zahl3 = 123
+0x7fff83443ec2 2 short int zahl2 = 123
+0x7fff83443ec4 4 int zahl1 = 123
+LP64
+ kevin sypr-uebungen/aufgabe1]$ ./aufgabe1 | sort -r
+LP64
+0x7ffc5091aa24 4 int zahl1 = 123
+0x7ffc5091aa22 2 short int zahl2 = 123
+0x7ffc5091aa18 8 long int zahl3 = 123
+0x7ffc5091aa10 8 long long int zahl4 = 123
+0x7ffc5091aa0c 4 unsigned int zahl1 = 123
+0x7ffc5091aa0a 2 unsigned short int zahl2 = 123
+0x7ffc5091aa00 8 unsgined long int zahl3 = 123
+0x7ffc5091a9f8 8 unsigned long long int zahl4 = 123
+0x7ffc5091a9f4 4 float zahl1 = 1.123000
+0x7ffc5091a9e8 8 double zahl2 = 1.123000
+0x7ffc5091a9d0 16 long double zahl3 = 1.123123
+0x7ffc5091a9cf 1 char zeichen = y
+0x7ffc5091a9ce 1 signed char zahl = -100
+0x7ffc5091a9cd 1 unsigned char byte = 255
+0x558f16bd01d8 8 const char *str = "Hallo"
+ kevin sypr-uebungen/aufgabe1]$ make cppcheck
+cppcheck --enable=warning,style --std=c11 aufgabe1.c
+Checking aufgabe1.c ...
+aufgabe1.c:61:26: warning: Logical conjunction always evaluates to false: sizeof(int) == 4 && sizeof(long) == 4. [incorrectLogicOperator]
+    if (sizeof(int) == 4 && sizeof(long int) == 4 && sizeof(char*) == 4)
+                         ^
+aufgabe1.c:69:31: warning: Logical conjunction always evaluates to false: sizeof(int) == 4 && sizeof(long) == 4. [incorrectLogicOperator]
+    else if (sizeof(int) == 4 && sizeof(long int) == 4 && sizeof(long long int) == 8 && sizeof(char*) == 8)
+                              ^
+ kevin sypr-uebungen/aufgabe1]$ 
