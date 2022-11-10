@@ -3,7 +3,7 @@
 #include <time.h>
 #include <string.h>
 
-void bubblesort(int, char **);
+void bubblesort(void *a, size_t ac, size_t size, int (*comp)(const void *, const void *));
 
 int main(int argc, char *argv[])
 {
@@ -20,77 +20,72 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    char **a = (char **)malloc(sizeof(char *) * (size_t)n);
-    if (a == NULL) {
-        return 1;
-    }
+    // char **a = (char **)malloc(sizeof(char *) * (size_t)n);
 
     srand((unsigned int)time(NULL));
 
     int m = strlen(argv[1]) + 1;
     int totalLenght = 0;
+    char *str = (char *)calloc(n, m);
+    if (str == NULL)
+    {
+        return 1;
+    }
+
     printf("Unsortiertes Array:\n");
     for (int i = 0; i < n; ++i)
     {
         int r = rand() % n;
-        char *str = (char *)malloc(m);
-
-        if (str == NULL){
-            return 1;
-        }
-
-        totalLenght += sprintf(str, "%d", r);
-        a[i] = str;
-        printf("%s ", a[i]);
+        totalLenght += sprintf(str + i * m, "%d", r);
+        printf("%s ", str + i * m);
     }
     totalLenght += n; // spaces + null
     printf("\n");
 
-    bubblesort(n, a);
+    bubblesort(str, n, m, (int (*)(const void *, const void *))strcmp);
 
     char *output = (char *)malloc(totalLenght);
-    if (output == NULL) {
+    if (output == NULL)
+    {
         return 1;
     }
-
-    strcpy(output, a[0]);
+    strcpy(output, str);
 
     for (int i = 1; i < n; ++i)
     {
-        if (strcmp(a[i], a[i - 1]) == 0)
+        if (strcmp(str + i * m, str + (i - 1) * m) == 0)
         {
             strcat(output, "*");
         }
         else
         {
             strcat(output, " ");
-            strcat(output, a[i]);
+            strcat(output, str + i * m);
         }
     }
     printf("Sortiertes Array:\n");
     printf("%s\n", output);
-
-    for (int i = 0; i < n; ++i)
-    {
-        free(a[i]);
-    }
-    free(a);
     free(output);
+    free(str);
 }
 
-void bubblesort(int ac, char **a)
+void bubblesort(void *a, size_t ac, size_t size, int (*comp)(const void *, const void *))
 {
+    char *tmp = (char *)malloc(size);
     for (int i = ac; i > 1; i--)
     {
         for (int j = 0; j < i - 1; j++)
         {
             // if (a[j] > a[j + 1])
-            if (strcmp(a[j], a[j + 1]) > 0)
+            char *element = (char *)a + j * size;
+            char *next = element + size;
+            if (comp(element, next) > 0)
             {
-                char *tmp = a[j + 1];
-                a[j + 1] = a[j];
-                a[j] = tmp;
+                memcpy(tmp, next, size);
+                memcpy(next, element, size);
+                memcpy(element, tmp, size);
             }
         }
     }
+    free(tmp);
 }

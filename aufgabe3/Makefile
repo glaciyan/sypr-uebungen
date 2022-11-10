@@ -20,5 +20,5 @@ clean:
 	$(RM) $(TARGET) $(TARGET).o
 
 cppcheck: $(TARGET).c
-	$(CPPCHECK) $<
+	$(CPPCHECK) --quiet $<
 
