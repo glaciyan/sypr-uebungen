@@ -44,7 +44,9 @@ int main(int argc, char *argv[])
         if (strcmp(a[i], a[i - 1]) == 0)
         {
             printf("*");
-        } else {
+        }
+        else
+        {
             printf(" %s", a[i]);
         }
     }
