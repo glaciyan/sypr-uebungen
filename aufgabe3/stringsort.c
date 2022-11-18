@@ -20,36 +20,39 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    char **a = (char **)malloc(sizeof(char *) * (size_t)n);
-    if (a == NULL) {
+    char **a = (char **) malloc(sizeof(char *) * (size_t) n);
+    if (a == NULL)
+    {
         return 1;
     }
 
-    srand((unsigned int)time(NULL));
+    srand((unsigned int) time(NULL));
 
-    int m = strlen(argv[1]) + 1;
-    int totalLenght = 0;
+    size_t m = strlen(argv[1]) + 1;
+    int totalLength = 0;
     printf("Unsortiertes Array:\n");
     for (int i = 0; i < n; ++i)
     {
         int r = rand() % n;
-        char *str = (char *)malloc(m);
+        char *str = (char *) malloc(m);
 
-        if (str == NULL){
+        if (str == NULL)
+        {
             return 1;
         }
 
-        totalLenght += sprintf(str, "%d", r);
+        totalLength += sprintf(str, "%d", r);
         a[i] = str;
         printf("%s ", a[i]);
     }
-    totalLenght += n; // spaces + null
+    totalLength += n; // spaces + null
     printf("\n");
 
     bubblesort(n, a);
 
-    char *output = (char *)malloc(totalLenght);
-    if (output == NULL) {
+    char *output = (char *) malloc(totalLength);
+    if (output == NULL)
+    {
         return 1;
     }
 

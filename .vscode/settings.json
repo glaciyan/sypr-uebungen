@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.asmdef": "json",
+        "leistung.h": "c"
+    }
+}

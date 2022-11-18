@@ -22,3 +22,4 @@ clean:
 cppcheck: $(TARGET).c
 	$(CPPCHECK) --quiet $<
 
+stringsort-optimiert: stringsort-optimiert.c
