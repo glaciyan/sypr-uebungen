@@ -40,6 +40,7 @@ int main(void)
         if (n >= AIN2_ANZAHL_LEISTUNGEN)
         {
             fprintf(stderr, "Zu viele Eingaben!\n");
+            dispose_leistung(&f);
             break;
         }
 

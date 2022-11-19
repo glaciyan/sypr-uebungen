@@ -4,12 +4,16 @@
 #include "string.h"
 #include "spo3_ain2.h"
 
+#define QUOTE(str) #str
+#define PERCENT_QUOTE(num) QUOTE(%num)
+#define MODUL_NAME_FORMAT (PERCENT_QUOTE(MAX_MODULE_NAME_LEN) "s")
+
 bool leistung_einlesen(leistung *out)
 {
-    out->modulName = (char *) malloc(MAX_MODULE_NAME_LEN);
+    out->modulName = (char *) malloc(MAX_MODULE_NAME_LEN + 1);
 
     // modulName einlesen
-    if (scanf("%20s", out->modulName) <= 0)
+    if (scanf(MODUL_NAME_FORMAT, out->modulName) <= 0)
     {
         dispose_leistung(out);
         return false;

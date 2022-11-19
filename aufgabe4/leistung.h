@@ -3,7 +3,7 @@
 
 #include "stdbool.h"
 
-#define MAX_MODULE_NAME_LEN 21
+#define MAX_MODULE_NAME_LEN 20
 
 enum leistungsart
 {
