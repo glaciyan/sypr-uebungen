@@ -8,7 +8,6 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
 
 #include "spo3_ain2.h"
 #include "leistung.h"
@@ -24,7 +23,7 @@ int main(void)
     //-------------------------------------------------- Notenspiegel einlesen
     fprintf(stderr,
             "Leistungen eingeben "
-            "(Noten zwichen %d und %d, Scheine B oder N, Ende mit %s):\n",
+            "(Noten zwischen %d und %d, Scheine B oder N, Ende mit %s):\n",
             SPO_BESTE_NOTE, SPO_SCHLECHTESTE_NOTE, EINGABE_ENDE);
 
     leistung notenspiegel[AIN2_ANZAHL_LEISTUNGEN];
@@ -33,7 +32,7 @@ int main(void)
     for (;;)
     {
         leistung f;
-        if (! leistung_einlesen(&f))
+        if (!leistung_einlesen(&f))
         {
             break;
         }
@@ -52,6 +51,11 @@ int main(void)
     for (int i = 0; i < n; ++i)
     {
         ausgeben(&notenspiegel[i]);
+    }
+
+    for (int i = 0; i < n; ++i)
+    {
+        dispose_leistung(&notenspiegel[i]);
     }
 
     return 0;
