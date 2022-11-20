@@ -13,9 +13,9 @@ enum leistungsart
 
 struct leistung
 {
-    char *modulName;
-    enum leistungsart typ;
-    union
+    char *modulName; // 8 byte
+    enum leistungsart typ; // 4 byte
+    union // 4 byte
     {
         int note;
         char beurteilung;
