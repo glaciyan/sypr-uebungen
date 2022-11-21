@@ -96,6 +96,6 @@ void ausgeben(leistung *leistung)
 
 void dispose_leistung(leistung *leistung)
 {
-    free(leistung->modulName);
+//    free(leistung->modulName);
     leistung->modulName = NULL;
 }

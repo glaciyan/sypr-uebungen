@@ -3,7 +3,21 @@
 #include <time.h>
 #include <string.h>
 
-void bubblesort(void *a, size_t ac, size_t size, int (*comp)(const void *, const void *));
+void bubblesort(char **a, int ac)
+{
+    for (int i = ac; i > 1; i--)
+    {
+        for (int j = 0; j < i - 1; j++)
+        {
+            if (strcmp(a[j], a[j + 1]) > 0)
+            {
+                char *tmp = a[j + 1];
+                a[j + 1] = a[j];
+                a[j] = tmp;
+            }
+        }
+    }
+}
 
 int main(int argc, char *argv[])
 {
@@ -20,13 +34,12 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    // char **a = (char **)malloc(sizeof(char *) * (size_t)n);
-
-    srand((unsigned int)time(NULL));
+    srand((unsigned int) time(NULL));
 
     int m = strlen(argv[1]) + 1;
     int totalLenght = 0;
-    char *str = (char *)calloc(n, m);
+    char *str = (char *) calloc(n, m);
+
     if (str == NULL)
     {
         return 1;
@@ -42,50 +55,38 @@ int main(int argc, char *argv[])
     totalLenght += n; // spaces + null
     printf("\n");
 
-    bubblesort(str, n, m, (int (*)(const void *, const void *))strcmp);
+    char **arr = (char **) calloc(n, sizeof(char *));
+    for (int i = 0; i < n; i++)
+    {
+        arr[i] = str + i * m;
+    }
 
-    char *output = (char *)malloc(totalLenght);
+    bubblesort(arr, n);
+
+    char *output = (char *) malloc(totalLenght);
     if (output == NULL)
     {
         return 1;
     }
-    strcpy(output, str);
+    strcpy(output, arr[0]);
 
     for (int i = 1; i < n; ++i)
     {
-        if (strcmp(str + i * m, str + (i - 1) * m) == 0)
+        if (strcmp(arr[i], arr[i - 1]) == 0)
         {
             strcat(output, "*");
         }
         else
         {
             strcat(output, " ");
-            strcat(output, str + i * m);
+            strcat(output, arr[i]);
         }
     }
+
     printf("Sortiertes Array:\n");
     printf("%s\n", output);
+
     free(output);
     free(str);
-}
-
-void bubblesort(void *a, size_t ac, size_t size, int (*comp)(const void *, const void *))
-{
-    char *tmp = (char *)malloc(size);
-    for (int i = ac; i > 1; i--)
-    {
-        for (int j = 0; j < i - 1; j++)
-        {
-            // if (a[j] > a[j + 1])
-            char *element = (char *)a + j * size;
-            char *next = element + size;
-            if (comp(element, next) > 0)
-            {
-                memcpy(tmp, next, size);
-                memcpy(next, element, size);
-                memcpy(element, tmp, size);
-            }
-        }
-    }
-    free(tmp);
+    free(arr);
 }
