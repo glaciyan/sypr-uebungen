@@ -36,11 +36,17 @@ int main(int argc, char *argv[])
 
     srand((unsigned int) time(NULL));
 
-    int m = strlen(argv[1]) + 1;
-    int totalLenght = 0;
+    size_t m = strlen(argv[1]) + 1;
+    int totalLength = 0;
     char *str = (char *) calloc(n, m);
+    char **arr = (char **) calloc(n, sizeof(char *));
 
-    if (str == NULL)
+    for (int i = 0; i < n; i++)
+    {
+        arr[i] = str + i * m;
+    }
+
+    if (str == NULL || arr == NULL)
     {
         return 1;
     }
@@ -49,21 +55,16 @@ int main(int argc, char *argv[])
     for (int i = 0; i < n; ++i)
     {
         int r = rand() % n;
-        totalLenght += sprintf(str + i * m, "%d", r);
-        printf("%s ", str + i * m);
+        totalLength += sprintf(arr[i], "%d", r);
+        printf("%s ", arr[i]);
     }
-    totalLenght += n; // spaces + null
+    totalLength += n; // spaces + null
     printf("\n");
 
-    char **arr = (char **) calloc(n, sizeof(char *));
-    for (int i = 0; i < n; i++)
-    {
-        arr[i] = str + i * m;
-    }
 
     bubblesort(arr, n);
 
-    char *output = (char *) malloc(totalLenght);
+    char *output = (char *) malloc(totalLength);
     if (output == NULL)
     {
         return 1;
