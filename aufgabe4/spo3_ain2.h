@@ -1,7 +1,7 @@
 #ifndef SPO3_AIN2_H
 #define SPO3_AIN2_H
 
-#include "stdbool.h"
+#include <stdbool.h>
 
 #define SPO_BESTE_NOTE 10
 #define SPO_SCHLECHTESTE_NOTE 50

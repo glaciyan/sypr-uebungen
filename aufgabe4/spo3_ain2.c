@@ -1,5 +1,5 @@
 #include "spo3_ain2.h"
-#include "string.h"
+#include <string.h>
 
 bool ist_spo_note(int note)
 {

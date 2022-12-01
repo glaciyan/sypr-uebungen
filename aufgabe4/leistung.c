@@ -1,5 +1,5 @@
 #include "leistung.h"
-#include "stdio.h"
+#include <stdio.h>
 #include "stdlib.h"
 #include "string.h"
 #include "spo3_ain2.h"
@@ -11,6 +11,10 @@
 bool leistung_einlesen(leistung *out)
 {
     out->modulName = (char *) malloc(MAX_MODULE_NAME_LEN + 1);
+    if (!out->modulName)
+    {
+        return false;
+    }
 
     // modulName einlesen
     if (scanf(MODUL_NAME_FORMAT, out->modulName) <= 0)

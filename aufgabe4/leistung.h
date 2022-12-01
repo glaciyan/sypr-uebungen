@@ -1,7 +1,7 @@
 #ifndef LEISTUNG_H
 #define LEISTUNG_H
 
-#include "stdbool.h"
+#include <stdbool.h>
 
 #define MAX_MODULE_NAME_LEN 20
 
