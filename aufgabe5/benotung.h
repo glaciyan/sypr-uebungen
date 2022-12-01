@@ -10,8 +10,6 @@ class benotung
 {
 private:
     int note;
-
-
 public:
     explicit benotung(int);
 
