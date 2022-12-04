@@ -12,6 +12,7 @@ private:
     int note;
 public:
     explicit benotung(int);
+    benotung(int, int);
 
     const static benotung beste;
     const static benotung schlechteste;

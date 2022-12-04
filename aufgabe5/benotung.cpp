@@ -6,7 +6,7 @@
 #include <stdexcept>
 #include <string>
 
-benotung::benotung(int note) : note(note)
+void verify(int note)
 {
     switch (note)
     {
@@ -29,6 +29,11 @@ benotung::benotung(int note) : note(note)
     }
 }
 
+benotung::benotung(int note) : note(note)
+{
+    verify(note);
+}
+
 const benotung benotung::beste(10);
 const benotung benotung::schlechteste(50);
 
@@ -45,5 +50,11 @@ bool benotung::ist_bestanden() const
 bool operator==(const benotung& lhs, const benotung& rhs)
 {
     return lhs.note == rhs.note;
+}
+
+benotung::benotung(int erste, int zweite) : note((erste + zweite) / 2)
+{
+    verify(erste);
+    verify(zweite);
 }
 

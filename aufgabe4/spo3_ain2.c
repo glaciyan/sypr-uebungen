@@ -1,5 +1,7 @@
 #include "spo3_ain2.h"
 #include <string.h>
+#include <stddef.h>
+#include <stdbool.h>
 
 bool ist_spo_note(int note)
 {
@@ -22,17 +24,17 @@ bool ist_spo_note(int note)
     }
 }
 
-static const char *mathe2 = "Mathematik 2";
-static const char *prog2 = "Programmiertechnik 2";
-static const char *rear = "Rechnerarchitekturen";
-static const char *stoch = "Stochastik";
-static const char *sypro = "Systemprogrammierung";
-
 bool ist_ain2_modul(const char *modul)
 {
-    if (strcmp(modul, mathe2) == 0 || strcmp(modul, prog2) == 0 || strcmp(modul, rear) == 0 ||
-        strcmp(modul, stoch) == 0 || strcmp(modul, sypro) == 0)
-        return true;
-    else
-        return false;
+    static const char *faecher[] = {"Mathematik 2", "Programmiertechnik 2", "Rechnerarchitekturen", "Stochastik",
+                                    "Systemprogrammierung", NULL};
+
+    const char **q = faecher;
+    while (*q != NULL)
+    {
+        if (strcmp(modul, *q) == 0) return true;
+        q = q + 1;
+    }
+
+    return false;
 }
