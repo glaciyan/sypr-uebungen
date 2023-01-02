@@ -41,3 +41,5 @@ lib$(LIBNAME).a: $(OBJECTS)
 
 lib$(LIBNAME).so: $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -shared $< -o $@
+
+include depends
