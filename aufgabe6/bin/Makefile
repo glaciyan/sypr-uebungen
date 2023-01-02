@@ -6,12 +6,12 @@
 #
 
 #--------------- Kommando-Variablen
-CXX = g++
+#CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -Weffc++ -Wold-style-cast -std=c++11 -pedantic -O3
 CPPFLAGS = -I. -I../lib
 LDFLAGS = -L../lib
 LDLIBS = -laufgabe6
-RM = rm -f
+#RM = rm -f
 
 #--------------- Hilfsvariablen
 TARGET = notenspiegel
@@ -19,8 +19,8 @@ OBJECTS = $(TARGET).o
 SOURCES = $(OBJECTS:.o=.cpp)
 
 #--------------- Musterregeln
-%.o: %.cpp
-	$(CXX) -c $< -o $@ $(CPPFLAGS) $(CXXFLAGS)
+#%.o: %.cpp
+#	$(CXX) -c $< -o $@ $(CPPFLAGS) $(CXXFLAGS)
 
 #--------------- Standardziele
 .PHONY: all clean depends
@@ -34,7 +34,7 @@ depends: $(SOURCES)
 	$(CXX) $(SOURCES) $(CPPFLAGS) -MM > $@
 
 #--------------- Ziele zur Erstellung
-$(TARGET): $(OBJECTS)
-	$(CXX) $^ -o $@ $(CXXFLAGS) $(LDFLAGS) $(LDLIBS)
+#$(TARGET): $(OBJECTS)
+#	$(CXX) $^ -o $@ $(CXXFLAGS) $(LDFLAGS) $(LDLIBS)
 
 include depends

@@ -8,10 +8,10 @@
 LIBNAME = aufgabe6
 
 #--------------- Kommando-Variablen
-CXX = g++
+#CXX = g++
 CPPFLAGS = -I.
 CXXFLAGS = -Wall -Wextra -Werror -Weffc++ -Wold-style-cast -std=c++11 -pedantic -O3 -fpic
-RM = rm -f
+#RM = rm -f
 AR = ar -r
 
 #--------------- Hilfsvariablen
@@ -21,8 +21,8 @@ SOURCES = $(OBJECTS:.o=.cpp)
 HEADERS = $(OBJECTS:.o=.h)
 
 #--------------- Musterregeln
-%.o: %.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+#%.o: %.cpp
+#	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 #--------------- Standardziele
 .PHONY: all clean depends
