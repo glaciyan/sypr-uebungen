@@ -21,6 +21,3 @@ if [ $? -ne 0 ]; then
   echo building static library failed
   exit 1
 fi
-
-rm ./*.o
-echo cleaned .o files
