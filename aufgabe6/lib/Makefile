@@ -30,14 +30,14 @@ HEADERS = $(OBJECTS:.o=.h)
 all: depends lib$(LIBNAME).$(LIBTYPE)
 
 clean:
-	rm -f lib$(LIBNAME).$(LIBTYPE) $(OBJECTS)
+	$(RM) lib$(LIBNAME).$(LIBTYPE) $(OBJECTS)
 
 depends: $(SOURCES) $(HEADERS)
-	$(CXX) $(CPPFLAGS) -MM $(SOURCES) > $@
+	$(CXX) $(SOURCES) $(CPPFLAGS) -MM > $@
 
 #--------------- Ziele zur Erstellung
 lib$(LIBNAME).a: $(OBJECTS)
-	$(AR) $@ $<
+	$(AR) $@ $^
 
 lib$(LIBNAME).so: $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -shared $< -o $@
