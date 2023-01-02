@@ -27,7 +27,7 @@ HEADERS = $(OBJECTS:.o=.h)
 #--------------- Standardziele
 .PHONY: all clean depends
 
-all: lib$(LIBNAME).$(LIBTYPE)
+all: depends lib$(LIBNAME).$(LIBTYPE)
 
 clean:
 	rm -f lib$(LIBNAME).$(LIBTYPE) $(OBJECTS)

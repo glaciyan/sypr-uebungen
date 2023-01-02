@@ -1,0 +1,6 @@
+/lib/depends
+/lib/libaufgabe6.so
+/lib/libaufgabe6.a
+/lib/fachnote.o
+/lib/fachnoten_liste.o
+/lib/benotung.o
