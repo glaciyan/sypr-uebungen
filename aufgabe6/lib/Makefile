@@ -30,7 +30,7 @@ HEADERS = $(OBJECTS:.o=.h)
 all: depends lib$(LIBNAME).$(LIBTYPE)
 
 clean:
-	$(RM) lib$(LIBNAME).$(LIBTYPE) $(OBJECTS)
+	$(RM) lib$(LIBNAME).$(LIBTYPE) $(OBJECTS) depends
 
 depends: $(SOURCES) $(HEADERS)
 	$(CXX) $(SOURCES) $(CPPFLAGS) -MM > $@
