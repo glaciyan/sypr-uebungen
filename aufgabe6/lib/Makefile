@@ -30,7 +30,7 @@ HEADERS = $(OBJECTS:.o=.h)
 all: depends lib$(LIBNAME).$(LIBTYPE)
 
 clean:
-	$(RM) lib$(LIBNAME).$(LIBTYPE) $(OBJECTS) depends
+	$(RM) lib$(LIBNAME).a lib$(LIBNAME).so $(OBJECTS) depends
 
 depends: $(SOURCES) $(HEADERS)
 	$(CXX) $(SOURCES) $(CPPFLAGS) -MM > $@
@@ -40,6 +40,6 @@ lib$(LIBNAME).a: $(OBJECTS)
 	$(AR) $@ $^
 
 lib$(LIBNAME).so: $(OBJECTS)
-	$(CXX) $(CXXFLAGS) -shared $< -o $@
+	$(CXX) $(CXXFLAGS) -shared $^ -o $@
 
 include depends

@@ -10,7 +10,7 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -Weffc++ -Wold-style-cast -std=c++11 -pedantic -O3
 CPPFLAGS = -I. -I../lib
 LDFLAGS = -L../lib
-LDLIBS = -l:libaufgabe6.a
+LDLIBS = -laufgabe6
 RM = rm -f
 
 #--------------- Hilfsvariablen
@@ -35,6 +35,6 @@ depends: $(SOURCES)
 
 #--------------- Ziele zur Erstellung
 $(TARGET): $(OBJECTS)
-	$(CXX) $^ -o $@ $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) $(LDLIBS)
+	$(CXX) $^ -o $@ $(CXXFLAGS) $(LDFLAGS) $(LDLIBS)
 
 include depends
