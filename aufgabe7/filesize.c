@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
                 continue;
             }
 
-            printf("%s: %ld\n", filePath, statbuff.st_size);
+            printf("%s: %ld bytes\n", filePath, statbuff.st_size);
         }
     }
     else // read from stdin
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
             n++;
         }
 
-        printf("stdin: %d\n", n);
+        printf("stdin: %d bytes\n", n);
         return 0;
     }
 }
