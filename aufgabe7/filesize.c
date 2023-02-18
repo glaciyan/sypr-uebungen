@@ -6,6 +6,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <locale.h>
+#include <stdint.h>
 
 int main(int argc, char *argv[])
 {
@@ -13,10 +14,11 @@ int main(int argc, char *argv[])
 
     if (argc > 1) // we have files here, get all their sizes
     {
+        struct stat statbuff;
+
         for (int i = 1; i < argc; i++)
         {
             char *filePath = argv[i];
-            struct stat statbuff;
 
             if (stat(filePath, &statbuff) == -1)
             {
@@ -24,20 +26,20 @@ int main(int argc, char *argv[])
                 continue;
             }
 
-            printf("%s: %ld bytes\n", filePath, statbuff.st_size);
+            printf("%s: %jd bytes\n", filePath, (intmax_t) statbuff.st_size);
         }
     }
     else // read from stdin
     {
-        int n = 0;
+        uintmax_t n = 0;
         unsigned char byte;
 
-        while (read(STDIN_FILENO, &byte, 1) > 0)
+        while (read(STDIN_FILENO, &byte, 1) == 1)
         {
             n++;
         }
 
-        printf("stdin: %d bytes\n", n);
+        printf("stdin: %ju bytes\n", n);
         return 0;
     }
 }

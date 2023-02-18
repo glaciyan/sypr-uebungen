@@ -7,6 +7,7 @@
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdint.h>
 
 int main(int argc, char *argv[])
 {
@@ -50,20 +51,44 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    if (read(srcFd, buff, statbuff.st_size) == -1) {
-        perror(argv[1]);
+    intmax_t readRes = read(srcFd, buff, statbuff.st_size);
+
+    if (readRes < statbuff.st_size)
+    {
         free(buff);
         close(srcFd);
         close(destFd);
-        return -1;
+
+        if (readRes == -1)
+        {
+            perror(argv[1]);
+            return -1;
+        }
+        else
+        {
+            fprintf(stderr, "%s: Konnte nicht die ganze Datei lesen", argv[1]);
+            return -1;
+        }
     }
 
-    if (write(destFd, buff, statbuff.st_size) == -1) {
-        perror(argv[2]);
+    intmax_t writeRes = write(destFd, buff, statbuff.st_size);
+
+    if (writeRes < statbuff.st_size)
+    {
         free(buff);
         close(srcFd);
         close(destFd);
-        return -1;
+
+        if (writeRes == -1)
+        {
+            perror(argv[2]);
+            return -1;
+        }
+        else
+        {
+            fprintf(stderr, "%s: Konnte nicht die ganze Datei schreiben", argv[2]);
+            return -1;
+        }
     }
 
     free(buff);
