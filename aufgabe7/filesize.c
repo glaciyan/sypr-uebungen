@@ -2,6 +2,8 @@
 // Created by kevin on 03.01.2023.
 //
 
+#define _POSIX_C_SOURCE 1
+
 #include <stdio.h>
 #include <sys/stat.h>
 #include <unistd.h>
